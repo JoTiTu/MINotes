@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MINotes.MainPage"
+             xmlns:local="clr-namespace:MINotes">
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+     
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="white">
+            <Frame BackgroundColor="white">
+                <Label Text="NOTES"
+                       FontSize="40"
+                       FontAttributes="Bold"
+                       TextColor="#e8e8e8"></Label>
+            </Frame>
+            <ListView x:Name="lst"
+                      Margin="15"
+                      BackgroundColor="white"
+                      SelectionMode="None"
+                      HasUnevenRows="True"
+                      ItemsSource="{Binding AllNotes}">
+                <ListView.ItemTemplate>  
+                    <DataTemplate>
+                        <ViewCell>
+      		                <Grid Margin="1">
+	      		                <Grid.RowDefinitions>
+				                    <RowDefinition Height="70"></RowDefinition>
+		    	                </Grid.RowDefinitions>
+		    	                <Grid.ColumnDefinitions>
+				                    <ColumnDefinition Width="70"></ColumnDefinition>
+				                    <ColumnDefinition Width="*"></ColumnDefinition>
+			                    </Grid.ColumnDefinitions>
+
+                                <Image Grid.Row="0"
+                                       Grid.Column="0"
+                                       Source="{Binding ImgSource}"
+                                       Aspect="AspectFill"/>
+			                    <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding InputTxt}"
+                                       LineBreakMode="CharacterWrap"
+                                       Padding="3"
+                                       FontSize="Body"
+                                       TextColor="Black">
+                                </Label>
+			                    
+      		                </Grid>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Delete"
+                                          IsDestructive="True"
+                                          Command="{Binding Source={x:Reference lst}, Path=BindingContext.DeleteNoteCommand}"
+                                          CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
+      	                </ViewCell> 
+                    </DataTemplate>  
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Editor Grid.Row="0"
+                        Grid.Column="0"
+                        VerticalOptions="Fill"
+                        Placeholder="New Note"
+                        PlaceholderColor="#e8e8e8"
+                        HorizontalOptions="Fill"
+                        x:Name="input"
+                        TextColor="black"
+                        Text="{Binding InputField}">
+                </Editor>
+                <Button HorizontalOptions="End"
+                    Text="+"
+                    FontSize="25"
+                    Padding="0"
+                    BackgroundColor="White"
+                    WidthRequest="35"
+                    HeightRequest="35"
+                    CharacterSpacing="0"
+                    TextColor="#F8C352"
+                    Margin="10"
+                    Grid.Row="0"
+                    Command="{Binding AddNoteCommand}"
+                    Grid.Column="1"
+                    VerticalOptions="Center">
+                </Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
