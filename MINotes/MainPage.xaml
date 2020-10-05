@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="white">
             <Frame BackgroundColor="white">
-                <Label Text="NOTES"
+                <Label Text="MI NOTES"
                        FontSize="40"
                        FontAttributes="Bold"
                        TextColor="#e8e8e8"></Label>
