@@ -26,7 +26,7 @@ namespace MINotes
         }
 
         // Path for internal data persistence
-        public string FilePath = Path.Combine(System.Environment.
+        private readonly string FilePath = Path.Combine(System.Environment.
             GetFolderPath(System.Environment.SpecialFolder.Personal), "notes.xml");
 
         // Store all Notes which are in ListView
@@ -37,7 +37,7 @@ namespace MINotes
         }
 
         // Bind Entry
-        public string InputField
+        public string EditorInput
         {
             get;
             set;
@@ -61,12 +61,12 @@ namespace MINotes
         {
             AllNotes.Add(new NoteModel()
             {
-                InputTxt = InputField,
+                InputTxt = EditorInput,
                 ImgSource = "https://picsum.photos/200/?random=" + new Random().Next().ToString()
             });
             ToNotesFile();
-            InputField = "";
-            NotifyPropertyChanged(InputField);
+            EditorInput = "";
+            NotifyPropertyChanged(EditorInput);
         }
 
         public void DeleteNote(object sender)

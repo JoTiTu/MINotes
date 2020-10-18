@@ -74,7 +74,7 @@
                         HorizontalOptions="Fill"
                         x:Name="input"
                         TextColor="black"
-                        Text="{Binding InputField}">
+                        Text="{Binding EditorInput}">
                 </Editor>
                 <Button HorizontalOptions="End"
                     Text="+"
